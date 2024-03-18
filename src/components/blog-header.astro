@@ -3,6 +3,8 @@ import { buttonVariants } from "@/components/ui/button";
 import { getCategories } from "@/lib/fetchers";
 import { cn } from "@/lib/utils";
 import { Icon } from "astro-icon/components";
+import Search from "../components/search.astro"
+import { Input } from "../components/ui/input"
 
 const categories = await getCategories();
 
@@ -16,13 +18,16 @@ const { category } = Astro.params;
 
 <h1 class="inline-block font-heading text-4xl">{title}</h1>
 
+<!-- Search with Fuse.js -->
+
 <div class="flex items-start justify-between my-6 max-md:gap-4">
+  
   <div
-    class="flex items-center lg:w-full max-w-xs h-10 rounded-md px-2 lg:px-3 border text-muted-foreground"
+    class="flex items-center lg:w-full max-w-xs h-10 rounded-md text-muted-foreground"
   >
-    <Icon name="ri:search-line" class="size-5" />
-    <span class="text-sm ml-2 hidden lg:flex">Search (coming soon)</span>
+  <Input type="search" placeholder="Search" />
   </div>
+
 
   {
     categories?.length ? (
